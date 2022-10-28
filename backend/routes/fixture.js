@@ -5,7 +5,7 @@ const db = require('../db')
 
 module.exports = router
 
-router.get('/fixture', async(req, res) => {
+router.get('/', async(req, res) => {
     const { rows } = await db.query('SELECT * FROM TASKS')
     res.send(JSON.stringify(rows))
 })
