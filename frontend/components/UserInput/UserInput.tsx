@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Stack, Button, Container, TextInput } from '@mantine/core';
+import { MenuItem } from "../MenuItem/MenuItem";
+
 
 
 export function UserInput() {
@@ -33,7 +35,9 @@ export function UserInput() {
                             })
                         }
                     </Stack>
-                    <Button onClick={addField}>Add User</Button>
+                    <Button component='a' variant="outline" color="violet" radius="xl" size="xl" onClick={addField}>Add User</Button>
+                    <MenuItem name={"Weiter"} link="/hardness" />
+
                 </Stack>
                 <pre>
                     {JSON.stringify(inputFields)}
