@@ -10,7 +10,7 @@ export function Startseite() {
     return (
         <>
             <Center className={classes.mainContainer}>
-                <Grid children={undefined} justify="center">
+                <Grid justify="center">
                     <>
                         <Grid.Col>
                             <Center>
@@ -21,7 +21,7 @@ export function Startseite() {
                 </Grid>
             </Center>
 
-            <Center style={{ width: useFullscreen, height: 300 }}>
+            <Center style={{height: '80%' }}>
 
                 <MenuItem name={"Start"} link="/hardness" />
 
