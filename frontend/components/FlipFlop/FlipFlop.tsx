@@ -78,7 +78,7 @@ class FlipClock extends Component {
       letterIndex: 0,
       lettersShuffle: true,
       // @ts-ignore
-      wantedLetter: this.props.wantedLetter
+      wantedLetter: this.props.wantedLetter.toUpperCase()
     };
 
   }
@@ -87,7 +87,7 @@ class FlipClock extends Component {
     // @ts-ignore
     this.timerID = setInterval(
       () => this.updateLetters(),
-      500);
+      400);
   }
 
   componentWillUnmount() {
@@ -102,9 +102,10 @@ class FlipClock extends Component {
       clearInterval(this.timerID)
       return
     }
-
+    
     // @ts-ignore
-    const letterIndex = this.state.letterIndex + 1;
+    const letterIndex = this.state.letterIndex + 1
+    
 
     // @ts-ignore
     const lettersShuffle = !this.state.lettersShuffle
@@ -113,9 +114,8 @@ class FlipClock extends Component {
         lettersShuffle
     });
 
-
     // @ts-ignore
-    if (alphabet[this.state.letterIndex] === this.state.wantedLetter) {
+    if (alphabet[letterIndex] === this.state.wantedLetter) {
         // @ts-ignore
       clearInterval(this.timerID)
     }
@@ -132,7 +132,6 @@ class FlipClock extends Component {
       lettersShuffle } =
       this.state;
 
-    console.log(JSON.stringify(this.state))
 
     return (
         <FlipUnitContainer
@@ -145,13 +144,24 @@ class FlipClock extends Component {
   }
 }
 
-export function FlipFlow() {
-    let word = "Loredana"
+export function FlipFlow({ word }: {word: string}) 
+{
     const word_arr = word.split("")
+    let i = 0;
     
     return (
       <>
-          <FlipClock key={1} wantedLetter={'B'} />
+      <div className={'flipClock'}>
+      {
+        word_arr.map(l => {
+            i++;
+            return (
+                <FlipClock key={`${i}${l}`} wantedLetter={l} />
+            )
+        })
+      }
+
+      </div>
       </>
     );
 }
