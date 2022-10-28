@@ -6,6 +6,7 @@ import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core
 import { NotificationsProvider } from '@mantine/notifications';
 import { useLocalStorage } from '@mantine/hooks';
 import {MainAppShell} from '../components/MainAppShell/MainAppShell';
+import './style.css'
 
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
