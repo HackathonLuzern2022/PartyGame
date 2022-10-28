@@ -38,26 +38,26 @@ export function MainAppShell({children}) {
       //   </Navbar>
       // }
       
-      header={
-        <Header height={70} p="md">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-              <Burger
-                opened={opened}
-                onClick={() => setOpened((o) => !o)}
-                size="sm"
-                color={theme.colors.gray[6]}
-                mr="xl"
-              />
-            </MediaQuery>
+      // header={
+      //   <Header height={70} p="md">
+      //     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
+      //       <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+      //         <Burger
+      //           opened={opened}
+      //           onClick={() => setOpened((o) => !o)}
+      //           size="sm"
+      //           color={theme.colors.gray[6]}
+      //           mr="xl"
+      //         />
+      //       </MediaQuery>
 
-            <h1>Party Time</h1>
+      //       <h1>Party Time</h1>
 
-            <ColorSchemeToggle></ColorSchemeToggle>
+      //       <ColorSchemeToggle></ColorSchemeToggle>
 
-          </div>
-        </Header>
-      }
+      //     </div>
+      //   </Header>
+      // }
     >
       {children}
     </AppShell>
