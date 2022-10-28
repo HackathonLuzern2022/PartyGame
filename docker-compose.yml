@@ -12,6 +12,7 @@ services:
       - POSTGRES_DB=partyparty
     volumes:
       - pgdb-data:/var/lib/postgresql/data/
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - pg-net
 

@@ -7,5 +7,5 @@ module.exports = router
 
 router.get('/:id', async (req, res) => {
   const { rows } = await db.query('SELECT NOW()')
-  res.send(JSON.stringify(rows))
+  res.send(rows[0])
 })
