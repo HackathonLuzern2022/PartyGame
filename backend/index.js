@@ -1,12 +1,11 @@
 const express = require('express')
 const app = express()
+const mountRoutes = require('./routes')
+
 const port = 4000
 
-const index = require('./routes/index')
-
-app.use('/', index)
-
+mountRoutes(app)
 
 app.listen(port, () => {
-    console.log(`Party Game BE listening on port ${port}`)
+    console.log(`Party Game BE listening on port http://localhost:${port}`)
 })
