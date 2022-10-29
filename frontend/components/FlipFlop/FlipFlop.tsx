@@ -97,7 +97,7 @@ class FlipClock extends Component<{wantedLetter: String}> {
 
   updateLetters() {
     // @ts-ignore
-    if (this.state.wantedLetter === 'A') {
+    if (this.state.wantedLetter === alphabet[0]) {
       // @ts-ignore
       clearInterval(this.timerID)
       return
