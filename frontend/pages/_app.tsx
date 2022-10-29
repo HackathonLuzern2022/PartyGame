@@ -8,6 +8,7 @@ import { useLocalStorage } from '@mantine/hooks';
 import {MainAppShell} from '../components/MainAppShell/MainAppShell';
 import './style.css'
 import { SharedStateProvider } from '../components/State/State';
+import {ModalsProvider} from '@mantine/modals'
 
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
@@ -33,11 +34,13 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       <SharedStateProvider>
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
           <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-            <NotificationsProvider>
+            <ModalsProvider>           
+               <NotificationsProvider>
               <MainAppShell>
                 <Component {...pageProps} />
               </MainAppShell>
             </NotificationsProvider>
+            </ModalsProvider>
           </MantineProvider>
         </ColorSchemeProvider>
       </SharedStateProvider>
