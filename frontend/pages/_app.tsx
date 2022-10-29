@@ -7,6 +7,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { useLocalStorage } from '@mantine/hooks';
 import {MainAppShell} from '../components/MainAppShell/MainAppShell';
 import './style.css'
+import { SharedStateProvider } from '../components/State/State';
 
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
@@ -29,15 +30,17 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-          <NotificationsProvider>
-            <MainAppShell>
-              <Component {...pageProps} />
-            </MainAppShell>
-          </NotificationsProvider>
-        </MantineProvider>
-      </ColorSchemeProvider>
+      <SharedStateProvider>
+        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+          <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+            <NotificationsProvider>
+              <MainAppShell>
+                <Component {...pageProps} />
+              </MainAppShell>
+            </NotificationsProvider>
+          </MantineProvider>
+        </ColorSchemeProvider>
+      </SharedStateProvider>
     </>
   );
 }
