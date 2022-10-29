@@ -1,11 +1,26 @@
 version: '3'
 
 services:
+  api:
+    image: hackathonluzern22/partyparty:latest
+    depends_on:
+      - postgres
+    environment:
+      PGUSER: postgres
+      PGHOST: database
+      PGPASSWD: postgres
+      PGDATABASE: partyparty
+      PGPORT: 5432
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "4004:3000"
+
   database:
     image: 'postgres:latest'
     restart: "always"
-    ports:
-      - "5432:5432"
+    #ports:
+    #  - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -25,8 +40,8 @@ services:
     volumes:
       - pgadmin4-data:/var/lib/pgadmin
       - ./config/servers.json:/pgadmin4/servers.json
-    ports:
-      - "5480:80"
+    #ports:
+    #  - "5480:80"
     networks:
       - pg-net
 
