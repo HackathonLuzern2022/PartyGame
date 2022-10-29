@@ -7,7 +7,7 @@ import { FlipFlow } from "../FlipFlop/FlipFlop";
 
 export function Startseite() {
     const { classes } = useStyles();
-    const title = 'Party Game'
+    const title = ['Party','Game']
 
     return (
         <>
@@ -15,9 +15,10 @@ export function Startseite() {
                 <Grid justify="center">
                     <>
                         <Grid.Col>
-                            <Center>
-                                <FlipFlow word={title} />
-                            </Center>
+                                <Stack justify="center" align="center">
+                                    <FlipFlow word={title[0]} />
+                                    <FlipFlow word={title[1]} />
+                                </Stack>
                         </Grid.Col>
                     </>
                 </Grid>
