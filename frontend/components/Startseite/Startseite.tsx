@@ -7,7 +7,7 @@ import { FlipFlow } from "../FlipFlop/FlipFlop";
 
 export function Startseite() {
     const { classes } = useStyles();
-    const title = ['Party','Game']
+    const title = ['Party','Game🤮']
 
     return (
         <>
