@@ -23,6 +23,8 @@ export function GameStart() {
   const router = useRouter()
   const [state, setState] = useSharedState();
   const { isLoading, isError, error, data, isFetching } = useTasks(state.hardness);
+  const { classes } = useStyles();
+
 
   function getSips() {
     console.log(state.hardness)
@@ -54,7 +56,7 @@ export function GameStart() {
   }
 
   const openModal = () => openConfirmModal({
-    title: 'Bestrafung!',
+    title:(<Title>Bestrafung!</Title>) ,
     children: (
       <Text>
         Du musst {getSips()} Schlücke trinken
@@ -65,6 +67,7 @@ export function GameStart() {
       cancel: 'Abbruch'
     },
     onConfirm: () => nextQuestion(),
+    centered : true
   })
 
   const quitOnMe = () => {

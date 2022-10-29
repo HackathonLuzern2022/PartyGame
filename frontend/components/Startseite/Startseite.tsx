@@ -25,7 +25,7 @@ export function Startseite() {
                 </Grid>
             </Center>
 
-            <Center style={{height: '60%' }}>
+            <Center style={{height: '30%' }}>
 
                 <MenuItem name={"Start"} link="/hardness" />
 
