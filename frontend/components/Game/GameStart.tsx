@@ -2,9 +2,36 @@
 import { Title, Button, Center, Container, Grid, Stack } from "@mantine/core";
 import useStyles from "../Game/GameStart.Style"
 import { useSharedState } from "../State/State";
+import axios from 'axios'
+import {
+  useQuery,
+} from "@tanstack/react-query"
+
+
+function useTasks(hardness: string) {
+    const url: string = `http://localhost:4000/tasks?hardness=${hardness}`;
+
+    // see https://react-query.tanstack.com/guides/important-defaults
+    // see https://react-query.tanstack.com/guides/paginated-queries
+    return useQuery(
+      ['tasks', { hardness }],
+      () => axios
+        .get(url)
+        .then((res) => res.data),
+      // the following can be used to avoid refetches on already fetched data (see paginated queries docs)
+      { enabled: true, retry: false }
+    );
+  }
 
 
 export function GameStart() {
+    const {
+        isLoading,
+        isError,
+        error,
+        data,
+        isFetching,
+      } = useTasks('EINFACH'); 
     const [state, setState] = useSharedState();
 
     return (
