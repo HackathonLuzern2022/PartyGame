@@ -2,7 +2,8 @@ import { Title, Button, Center, Container, Grid, Stack } from "@mantine/core";
 import useStyles from "./Starseite.styles"
 import { MenuItem } from "../MenuItem/MenuItem";
 import { useFullscreen } from "@mantine/hooks";
-import { FlipFlow } from "../FlipFlop/FlipFlop";
+import { FlipFlow, FlipFlowMoji } from "../FlipFlop/FlipFlop";
+import { renderToString } from 'react-dom'
 
 
 export function Startseite() {
@@ -24,7 +25,7 @@ export function Startseite() {
                 </Grid>
             </Center>
 
-            <Center style={{height: '80%' }}>
+            <Center style={{height: '30%' }}>
 
                 <MenuItem name={"Start"} link="/hardness" />
 

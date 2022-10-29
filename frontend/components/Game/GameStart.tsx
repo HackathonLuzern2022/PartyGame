@@ -1,5 +1,5 @@
 //import useStyles from "./Starseite.styles"
-import { Title, Button, Center, Container, Grid, Stack, Paper, Text, ActionIcon, Space } from '@mantine/core';
+import { Popover, Title, Button, Center, Container, Grid, Stack, Paper, Text, ActionIcon, Space, Card, Image } from '@mantine/core';
 import useStyles from '../Game/GameStart.Style';
 import { useSharedState } from '../State/State';
 import axios from 'axios';
@@ -9,24 +9,69 @@ import { useRouter } from 'next/router';
 import { FlipFlow } from "../FlipFlop/FlipFlop";
 import { renderToString } from 'react-dom/server';
 import reactStringReplace from 'react-string-replace';
+import { useState } from 'react';
+import { openConfirmModal } from '@mantine/modals';
+import { MenuItem } from '../MenuItem/MenuItem';
 
 function useTasks(hardness: string) {
   const url: string = `http://localhost:4000/tasks?hardness=${hardness}`;
-
-  // see https://react-query.tanstack.com/guides/important-defaults
-  // see https://react-query.tanstack.com/guides/paginated-queries
   return useQuery(
     ['tasks', { hardness }],
     () => axios.get(url).then((res) => res.data),
-    // the following can be used to avoid refetches on already fetched data (see paginated queries docs)
     { enabled: true, retry: false }
   );
 }
 
 export function GameStart() {
-    const router = useRouter()
+  const router = useRouter()
   const [state, setState] = useSharedState();
   const { isLoading, isError, error, data, isFetching } = useTasks(state.hardness);
+  const { classes } = useStyles();
+
+
+  function getSips() {
+    console.log(state.hardness)
+    switch (state.hardness) {
+      case 'EINFACH':
+        return getEasySips()
+      case 'MITTEL':
+        return getMediumSips()
+      case 'SCHWIERIG':
+        return getHardSips()
+    }
+  }
+
+  function getEasySips() {
+    return getRandomNumberBetweenOneToThree() + 1;
+  }
+
+  function getMediumSips() {
+    return getRandomNumberBetweenOneToThree() + 3;
+  }
+
+  function getHardSips() {
+    return getRandomNumberBetweenOneToThree() + 5;
+  }
+
+  function getRandomNumberBetweenOneToThree() {
+    let max = 3;
+    return Math.floor(Math.random() * max)
+  }
+
+  const openModal = () => openConfirmModal({
+    title:(<Title>Bestrafung!</Title>) ,
+    children: (
+      <Text>
+        Du musst {getSips()} Schlücke trinken
+      </Text>
+    ),
+    labels: {
+      confirm: 'Weiter',
+      cancel: 'Abbruch'
+    },
+    onConfirm: () => nextQuestion(),
+    centered : true
+  })
 
   const quitOnMe = () => {
     router.push("/")
@@ -34,7 +79,7 @@ export function GameStart() {
 
   const nextQuestion = () => {
     if (state.currentTask < data.length) {
-      setState((prev) => ({ ...prev, currentTask: prev.currentTask+1 }))
+      setState((prev) => ({ ...prev, currentTask: prev.currentTask + 1 }))
     }
   }
 
@@ -63,15 +108,15 @@ export function GameStart() {
 
   return (
     <>
-      <Stack style={{ height: '100% '}}>
+      <Stack style={{ height: '100% ' }}>
         {isLoading
           ? 'Loading...'
           : isError
-          ? 'Error!'
-          : (data && (state.currentTask < data.length))
-          ? (
+            ? 'Error!'
+            : (data && (state.currentTask < data.length))
+              ? (
                 <>
-                    <Paper
+                  <Paper
                     shadow="xs"
                     p="md"
                     withBorder
@@ -90,7 +135,7 @@ export function GameStart() {
                             <IconX size={34} />
                         </ActionIcon>
                         <Space w="sm"></Space>
-                        <ActionIcon color="red" size="xl" radius="xl" variant="filled">
+                        <ActionIcon color="red" size="xl" radius="xl" variant="filled" onClick={openModal}>
                             <IconStepOut size={34} />
                         </ActionIcon>
                         <Space w="sm"></Space>
@@ -100,7 +145,11 @@ export function GameStart() {
                     </Center>
                 </>
               )
-          : 'Game Over'}
+          : (
+            <Stack justify="center" align="center"> 
+              <MenuItem name="Restart Game." link="/" />
+            </Stack>
+          )}
       </Stack>
     </>
   );

@@ -10,19 +10,19 @@ INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) zeige deine letzte
 INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) zeige dein zuletzt gelöstes foto'); 
 INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) schweige für die nächste runde'); 
 INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) sprich für die nächste runde mit einem akzent'); 
-INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) deine mitspieler mischen dir einen mystery shot'); 
-INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) tausche dein getränk mit dem vollsten am tisch (ausser es ist dein eigenes)'); 
+INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) Mach einen Hoibörzu - sponsored by HoibörzuClub'); 
+INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) Iss eine Packung Kekse'); 
 INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) sing ein lied'); 
 INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) du darfst eine neue regel für diese runde festlegen'); 
 INSERT INTO TASKS (hardness, text) VALUES ('EINFACH', '(Name) mache 10 liegestützen');
 
 -- MITTEL
-INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) trink dein bodycount');
+INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) Mache ein einarmigen Liegestutz');
 INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) tanze zu einem song deiner wahl für 1 minute');
 INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) rufe den 3. kontakt in deinem handy an und singe happy birthday');
 INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) versuche deine beine hinter den kopf zu bekommen');
 INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) imitier ein tier');
-INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) mach einen purzelbaum');
+INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) Dichte ein Gedicht');
 INSERT INTO TASKS (hardness, text) VALUES ('MITTEL', '(Name) iss etwas ohne die hände zur hilfe zu nehmen');
 
 -- SCHWEIRIG

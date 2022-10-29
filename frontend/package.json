@@ -28,6 +28,7 @@
     "@mantine/hooks": "5.1.4",
     "@mantine/next": "5.1.4",
     "@mantine/notifications": "5.1.4",
+    "@mantine/modals": "5.1.4",
     "@mantine/prism": "5.1.4",
     "@next/bundle-analyzer": "^12.1.4",
     "@tabler/icons": "^1.78.1",
@@ -40,7 +41,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-string-replace": "^1.1.0",
-    "react-tracked": "^1.7.10"
+    "react-tracked": "^1.7.10",
+    "reactjs-popup": "^2.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
