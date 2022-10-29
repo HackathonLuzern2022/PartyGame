@@ -69,7 +69,7 @@ const FlipUnitContainer = ({ letterIndex, shuffle }: {letterIndex: number, shuff
 };
 
 // class component
-class FlipClock extends Component {
+class FlipClock extends Component<{wantedLetter: String}> {
 
   // @ts-ignore
   constructor(props) {

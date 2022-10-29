@@ -30,7 +30,9 @@ export function GameStart() {
   }
 
   const nextQuestion = () => {
-    setState((prev) => ({ ...prev, currentTask: prev.currentTask+1 }))
+    if (state.currentTask < data.length) {
+      setState((prev) => ({ ...prev, currentTask: prev.currentTask+1 }))
+    }
   }
 
   return (
@@ -40,7 +42,7 @@ export function GameStart() {
           ? 'Loading...'
           : isError
           ? 'Error!'
-          : data
+          : (data && (state.currentTask < data.length))
           ? (
                 <>
                     <Paper
@@ -50,9 +52,9 @@ export function GameStart() {
                     style={{ minHeight: 200, height: '100%', position: 'relative' }}
                     >
                         <Center style={{ height: '100%' }}>
-                            <Text align="center" size="xl" weight="bolder">
+                              <Text align="center" size="xl" weight="bolder">
                                 {data[state.currentTask].text}
-                            </Text>
+                              </Text> 
                         </Center>
                     </Paper>
                     <Center >
@@ -70,7 +72,7 @@ export function GameStart() {
                     </Center>
                 </>
               )
-          : null}
+          : 'Game Over'}
       </Stack>
     </>
   );
