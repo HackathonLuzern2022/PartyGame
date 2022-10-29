@@ -2,7 +2,8 @@ import React, { ReactNode, createContext, useState, useContext } from 'react';
 
 const initialState = {
   hardness: 'EINFACH',
-  users: [{ name: '' }]
+  users: [{ name: '' }],
+  currentTask: 0
 };
 
 const useMyState = () => useState(initialState);

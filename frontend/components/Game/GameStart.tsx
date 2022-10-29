@@ -1,81 +1,77 @@
 //import useStyles from "./Starseite.styles"
-import { Title, Button, Center, Container, Grid, Stack } from "@mantine/core";
-import useStyles from "../Game/GameStart.Style"
-import { useSharedState } from "../State/State";
-import axios from 'axios'
-import {
-  useQuery,
-} from "@tanstack/react-query"
-
+import { Title, Button, Center, Container, Grid, Stack, Paper, Text, ActionIcon, Space } from '@mantine/core';
+import useStyles from '../Game/GameStart.Style';
+import { useSharedState } from '../State/State';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { IconAdjustments, IconChevronRight, IconCross, IconCrosshair, IconCrossOff, IconStepOut, IconX } from '@tabler/icons';
+import { useRouter } from 'next/router';
 
 function useTasks(hardness: string) {
-    const url: string = `http://localhost:4000/tasks?hardness=${hardness}`;
+  const url: string = `http://localhost:4000/tasks?hardness=${hardness}`;
 
-    // see https://react-query.tanstack.com/guides/important-defaults
-    // see https://react-query.tanstack.com/guides/paginated-queries
-    return useQuery(
-      ['tasks', { hardness }],
-      () => axios
-        .get(url)
-        .then((res) => res.data),
-      // the following can be used to avoid refetches on already fetched data (see paginated queries docs)
-      { enabled: true, retry: false }
-    );
-  }
-
+  // see https://react-query.tanstack.com/guides/important-defaults
+  // see https://react-query.tanstack.com/guides/paginated-queries
+  return useQuery(
+    ['tasks', { hardness }],
+    () => axios.get(url).then((res) => res.data),
+    // the following can be used to avoid refetches on already fetched data (see paginated queries docs)
+    { enabled: true, retry: false }
+  );
+}
 
 export function GameStart() {
-    const {
-        isLoading,
-        isError,
-        error,
-        data,
-        isFetching,
-      } = useTasks('EINFACH'); 
-    const [state, setState] = useSharedState();
+    const router = useRouter()
+  const [state, setState] = useSharedState();
+  const { isLoading, isError, error, data, isFetching } = useTasks(state.hardness);
 
-    return (
-        <>
-        <Center>
-             {/* <Grid>
-                <Center>
-                    <Grid.Col>2</Grid.Col>
-                </Center>
-                <Center style={{ width: "useFullscreen", height: 350 }}>
-                    <Grid.Col>3</Grid.Col>    
-                </Center>
-                <Center style={{ width: "useFullscreen", height: 800 }}>
-                    <Grid.Col>1</Grid.Col>
-                </Center>
+  const quitOnMe = () => {
+    router.push("/")
+  }
 
-      </Grid> */}
-        <pre>
-            {JSON.stringify(state)}
-        </pre>
-      </Center>
+  const nextQuestion = () => {
+    setState((prev) => ({ ...prev, currentTask: prev.currentTask+1 }))
+  }
 
-        </>
-        /*
-
-            <>
-            <Center className={classes.mainContainer}>
-                <Grid justify="center">
-                    <>
-                        <Grid.Col>
-                            <Center>
-                                <Title className={classes.title}>Underem Tisch</Title>
-                            </Center>
-                        </Grid.Col>
-                    </>
-                </Grid>
-            </Center>
-
-            <Center style={{ width: "useFullscreen", height: 300 }}>
-
-                <MenuItem name={"Start"} link="/hardness" />
-
-            </Center>
-        </>
-        */
-    );
+  return (
+    <>
+      <Stack style={{ height: '100% '}}>
+        {isLoading
+          ? 'Loading...'
+          : isError
+          ? 'Error!'
+          : data
+          ? (
+                <>
+                    <Paper
+                    shadow="xs"
+                    p="md"
+                    withBorder
+                    style={{ minHeight: 200, height: '100%', position: 'relative' }}
+                    >
+                        <Center style={{ height: '100%' }}>
+                            <Text align="center" size="xl" weight="bolder">
+                                {data[state.currentTask].text}
+                            </Text>
+                        </Center>
+                    </Paper>
+                    <Center >
+                        <ActionIcon color="gray" size="xl" radius="xl" variant="filled" onClick={quitOnMe}>
+                            <IconX size={34} />
+                        </ActionIcon>
+                        <Space w="sm"></Space>
+                        <ActionIcon color="red" size="xl" radius="xl" variant="filled">
+                            <IconStepOut size={34} />
+                        </ActionIcon>
+                        <Space w="sm"></Space>
+                        <ActionIcon color="blue" size="xl" radius="xl" variant="filled" onClick={nextQuestion}>
+                            <IconChevronRight size={34} />
+                        </ActionIcon>
+                    </Center>
+                </>
+              )
+          : null}
+      </Stack>
+    </>
+  );
 }
