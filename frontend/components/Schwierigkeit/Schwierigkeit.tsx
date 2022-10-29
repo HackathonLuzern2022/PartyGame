@@ -1,4 +1,4 @@
-import { Title, Button, Center, Grid, Radio, Box, Group } from "@mantine/core";
+import { Title, Button, Center, Grid, Radio, Box, Group, Stack, Container } from "@mantine/core";
 import useStyles from "./Schwierigkeit.style"
 import { useForm } from '@mantine/form';
 import { useRouter } from "next/router";
@@ -10,22 +10,16 @@ export function Schwierigkeit() {
     const [state, setState] = useSharedState();
     const router = useRouter();
 
-    const form = useForm({
-        initialValues: {
-            schwierigkeit: state.hardness,
-        },
-    });
 
-    function saveDataAndNavigateToNextPage() {
-        console.log(form.values.schwierigkeit);
-        setState((prev) => ({ ...prev, hardness: form.values.schwierigkeit }))
+    function updateHardness(value: string) {
+        setState((prev) => ({ ...prev, hardness: value }))
 
         router.push("user-input");
     }
 
     return (
 
-        <Box sx={{ maxWidth: '100%' }} mx="auto">
+        <Container style={{ height: '100%' }}>
             <Center className={classes.mainContainer}>
                 <Grid justify="center">
 
@@ -37,30 +31,11 @@ export function Schwierigkeit() {
 
                 </Grid>
             </Center>
-            <Center>
-                <form onSubmit={form.onSubmit((value) => { saveDataAndNavigateToNextPage() })}>
-
-                    <Radio.Group
-                        {...form.getInputProps('schwierigkeit')}
-                    >
-                        <div>
-                            <div className={classes.radiobutton}>
-                                <Radio value="EINFACH" label="Einfach" />
-                            </div>
-                            <div className={classes.radiobutton}>
-                                <Radio value="MITTEL" label="Mittel" />
-                            </div>
-                            <div className={classes.radiobutton}>
-                                <Radio value="SCHWER" label="Schwer" />
-                            </div>
-                        </div>
-                    </Radio.Group>
-
-                    <Group position="right" mt="md">
-                        <Button type="submit" >Submit</Button>
-                    </Group>
-                </form>
-            </Center>
-        </Box>
+            <Stack justify="center" align="stretch" style={{ height: '80%' }}>
+                <Button variant="filled" color="violet" radius="xl" size="xl" onClick={() => updateHardness('EINFACH')}>Einfach</Button>
+                <Button variant="filled" color="violet" radius="xl" size="xl" onClick={() => updateHardness('MITTEL')}>Mittel</Button>  
+                <Button variant="filled" color="violet" radius="xl" size="xl" onClick={() => updateHardness('SCHWIERIG')}>Schwierig</Button>
+            </Stack>
+        </Container>
     );
 }

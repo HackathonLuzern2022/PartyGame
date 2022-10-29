@@ -1,14 +1,16 @@
 //import useStyles from "./Starseite.styles"
 import { Title, Button, Center, Container, Grid, Stack } from "@mantine/core";
 import useStyles from "../Game/GameStart.Style"
+import { useSharedState } from "../State/State";
 
 
 export function GameStart() {
+    const [state, setState] = useSharedState();
 
     return (
         <>
         <Center>
-             <Grid>
+             {/* <Grid>
                 <Center>
                     <Grid.Col>2</Grid.Col>
                 </Center>
@@ -19,7 +21,10 @@ export function GameStart() {
                     <Grid.Col>1</Grid.Col>
                 </Center>
 
-      </Grid>
+      </Grid> */}
+        <pre>
+            {JSON.stringify(state)}
+        </pre>
       </Center>
 
         </>
