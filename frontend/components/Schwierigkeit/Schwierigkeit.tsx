@@ -14,13 +14,10 @@ export function Schwierigkeit() {
         },
     });
 
-    function navigateToNextPage(){
-        sendSchwierigkeit();
-        router.push("user-input");
-    }
+    function saveDataAndNavigateToNextPage() {
+        console.log(form.values.schwierigkeit);
 
-    const sendSchwierigkeit = () => {
-        return postMessage(`https://localhost:4000/hardness/${form.values.schwierigkeit}`);
+        router.push("user-input");
     }
 
     return (
@@ -38,7 +35,7 @@ export function Schwierigkeit() {
                 </Grid>
             </Center>
             <Center>
-                <form onSubmit={form.onSubmit((value) => {console.log(value), navigateToNextPage()})}>
+                <form onSubmit={form.onSubmit((value) => { saveDataAndNavigateToNextPage() })}>
 
                     <Radio.Group
                         {...form.getInputProps('schwierigkeit')}
