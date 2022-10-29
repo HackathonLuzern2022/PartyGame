@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "🤮", "🇨🇭"];
 
 // function component
 const AnimatedCard = ({ animation, letter }: {animation: String, letter: String}) => {
@@ -97,7 +97,7 @@ class FlipClock extends Component<{wantedLetter: String}> {
 
   updateLetters() {
     // @ts-ignore
-    if (this.state.wantedLetter === 'A') {
+    if (this.state.wantedLetter === alphabet[0]) {
       // @ts-ignore
       clearInterval(this.timerID)
       return
@@ -115,7 +115,7 @@ class FlipClock extends Component<{wantedLetter: String}> {
     });
 
     // @ts-ignore
-    if (alphabet[letterIndex] === this.state.wantedLetter) {
+    if (alphabet[letterIndex].charCodeAt(0) === this.state.wantedLetter.charCodeAt(0)) {
         // @ts-ignore
       clearInterval(this.timerID)
     }
@@ -164,4 +164,13 @@ export function FlipFlow({ word }: {word: string})
       </div>
       </>
     );
+}
+
+export function FlipFlowMoji({ moji }: {moji: string})
+{
+  return (
+    <>
+      <FlipClock wantedLetter={moji} />
+    </>
+  )
 }

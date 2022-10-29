@@ -8,6 +8,7 @@ import { IconAdjustments, IconChevronRight, IconCross, IconCrosshair, IconCrossO
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { openConfirmModal } from '@mantine/modals';
+import { MenuItem } from '../MenuItem/MenuItem';
 
 function useTasks(hardness: string) {
   const url: string = `http://localhost:4000/tasks?hardness=${hardness}`;
@@ -115,7 +116,11 @@ export function GameStart() {
                   </Center>
                 </>
               )
-              : 'Game Over'}
+          : (
+            <Stack justify="center" align="center"> 
+              <MenuItem name="Restart Game." link="/" />
+            </Stack>
+          )}
       </Stack>
     </>
   );
