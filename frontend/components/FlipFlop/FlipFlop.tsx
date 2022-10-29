@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "🤮"];
+const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "🤮", "🇨🇭"];
 
 // function component
 const AnimatedCard = ({ animation, letter }: {animation: String, letter: String}) => {
@@ -164,4 +164,13 @@ export function FlipFlow({ word }: {word: string})
       </div>
       </>
     );
+}
+
+export function FlipFlowMoji({ moji }: {moji: string})
+{
+  return (
+    <>
+      <FlipClock wantedLetter={moji} />
+    </>
+  )
 }
