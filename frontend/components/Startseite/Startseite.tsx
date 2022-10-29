@@ -2,10 +2,12 @@ import { Title, Button, Center, Container, Grid, Stack } from "@mantine/core";
 import useStyles from "./Starseite.styles"
 import { MenuItem } from "../MenuItem/MenuItem";
 import { useFullscreen } from "@mantine/hooks";
+import { FlipFlow } from "../FlipFlop/FlipFlop";
 
 
 export function Startseite() {
     const { classes } = useStyles();
+    const title = 'Party Game'
 
     return (
         <>
@@ -14,7 +16,7 @@ export function Startseite() {
                     <>
                         <Grid.Col>
                             <Center>
-                                <Title className={classes.title}>Underem Tisch</Title>
+                                <FlipFlow word={title} />
                             </Center>
                         </Grid.Col>
                     </>
