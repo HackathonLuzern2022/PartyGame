@@ -3,6 +3,7 @@ import useStyles from "./Starseite.styles"
 import { MenuItem } from "../MenuItem/MenuItem";
 import { useFullscreen } from "@mantine/hooks";
 import { FlipFlow, FlipFlowMoji } from "../FlipFlop/FlipFlop";
+import { renderToString } from 'react-dom'
 
 
 export function Startseite() {
@@ -18,7 +19,6 @@ export function Startseite() {
                                 <Stack justify="center" align="center">
                                     <FlipFlow word={title[0]} />
                                     <FlipFlow word={title[1]} />
-                                    <FlipFlowMoji moji="🇨🇭" />
                                 </Stack>
                         </Grid.Col>
                     </>
