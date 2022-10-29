@@ -25,7 +25,7 @@ export function Schwierigkeit() {
 
                     <Grid.Col>
                         <Center>
-                            <Title className={classes.title}>Schwierigkeitsgrad</Title>
+                            <Title className={classes.title}>Schwierigkeit</Title>
                         </Center>
                     </Grid.Col>
 
