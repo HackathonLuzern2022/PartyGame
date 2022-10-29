@@ -6,6 +6,9 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { IconAdjustments, IconChevronRight, IconCross, IconCrosshair, IconCrossOff, IconStepOut, IconX } from '@tabler/icons';
 import { useRouter } from 'next/router';
+import { FlipFlow } from "../FlipFlop/FlipFlop";
+import { renderToString } from 'react-dom/server';
+import reactStringReplace from 'react-string-replace';
 
 function useTasks(hardness: string) {
   const url: string = `http://localhost:4000/tasks?hardness=${hardness}`;
@@ -35,6 +38,29 @@ export function GameStart() {
     }
   }
 
+  const getRandomUser = () => {
+    console.log(state.users[Math.floor(Math.random() * state.users.length)].name)
+    return state.users[Math.floor(Math.random() * state.users.length)].name
+
+  }
+
+  const setNameInText = (text: string, name: string) => {
+    const [beforeString, afterString] = text.split("(Name)")
+    return (
+      <>
+        <Text align="center" size="xl" weight="bolder">
+          {beforeString}
+        </Text>
+
+        <FlipFlow word={name}></FlipFlow>
+
+        <Text align="center" size="xl" weight="bolder">
+          {afterString}
+        </Text>
+      </>
+    )
+  }
+
   return (
     <>
       <Stack style={{ height: '100% '}}>
@@ -51,11 +77,13 @@ export function GameStart() {
                     withBorder
                     style={{ minHeight: 200, height: '100%', position: 'relative' }}
                     >
-                        <Center style={{ height: '100%' }}>
-                              <Text align="center" size="xl" weight="bolder">
-                                {data[state.currentTask].text}
-                              </Text> 
-                        </Center>
+                      <Center style={{ height: '100%' }}>
+                        <Stack justify="center" align="center">
+                          {
+                            setNameInText(data[state.currentTask].text, getRandomUser())
+                          }
+                        </Stack>
+                      </Center>
                     </Paper>
                     <Center >
                         <ActionIcon color="gray" size="xl" radius="xl" variant="filled" onClick={quitOnMe}>
