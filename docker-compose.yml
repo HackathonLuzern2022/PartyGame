@@ -12,9 +12,8 @@ services:
       PGDATABASE: partyparty
       PGPORT: 5432
       NODE_ENV: production
-      PORT: 3000
     ports:
-      - "4004:3000"
+      - "4004:4000"
 
   database:
     image: 'postgres:latest'
