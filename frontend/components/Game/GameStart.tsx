@@ -14,7 +14,7 @@ import { openConfirmModal } from '@mantine/modals';
 import { MenuItem } from '../MenuItem/MenuItem';
 
 function useTasks(hardness: string) {
-  const url: string = `http://localhost:4000/tasks?hardness=${hardness}`;
+  const url: string = `https://partyparty-api.enea.tech/tasks?hardness=${hardness}`;
   return useQuery(
     ['tasks', { hardness }],
     () => axios.get(url).then((res) => res.data),
