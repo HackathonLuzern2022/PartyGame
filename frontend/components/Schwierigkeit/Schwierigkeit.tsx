@@ -12,7 +12,7 @@ export function Schwierigkeit() {
 
 
     function updateHardness(value: string) {
-        setState((prev) => ({ ...prev, hardness: value }))
+        setState((prev) => ({ ...prev, hardness: value, currentTask: 0 }))
 
         router.push("user-input");
     }

@@ -87,7 +87,7 @@ class FlipClock extends Component<{wantedLetter: String}> {
     // @ts-ignore
     this.timerID = setInterval(
       () => this.updateLetters(),
-      400);
+      50);
   }
 
   componentWillUnmount() {

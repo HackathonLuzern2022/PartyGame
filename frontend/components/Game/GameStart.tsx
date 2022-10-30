@@ -85,7 +85,7 @@ export function GameStart() {
 
   const getRandomUser = () => {
     console.log(state.users[Math.floor(Math.random() * state.users.length)].name)
-    return state.users[Math.floor(Math.random() * state.users.length)].name
+    return state.users[Math.floor(Math.random() * state.users.length)].name || "User"
 
   }
 
@@ -93,13 +93,13 @@ export function GameStart() {
     const [beforeString, afterString] = text.split("(Name)")
     return (
       <>
-        <Text align="center" size="xl" weight="bolder">
+        <Text align="center" size="xl" weight="bolder" className='game-text'>
           {beforeString}
         </Text>
 
         <FlipFlow word={name}></FlipFlow>
 
-        <Text align="center" size="xl" weight="bolder">
+        <Text align="center" size="xl" weight="bolder" className='game-text'>
           {afterString}
         </Text>
       </>
@@ -112,7 +112,7 @@ export function GameStart() {
         {isLoading
           ? 'Loading...'
           : isError
-            ? 'Error!'
+            ? 'Error!' + JSON.stringify(error)
             : (data && (state.currentTask < data.length))
               ? (
                 <>
@@ -122,13 +122,11 @@ export function GameStart() {
                     withBorder
                     style={{ minHeight: 200, height: '100%', position: 'relative' }}
                     >
-                      <Center style={{ height: '100%' }}>
-                        <Stack justify="center" align="center">
-                          {
-                            setNameInText(data[state.currentTask].text, getRandomUser())
-                          }
-                        </Stack>
-                      </Center>
+                          <Stack justify="center" align="center" style={{ height: '100%'}}>
+                              {
+                                setNameInText(data[state.currentTask].text, getRandomUser())
+                              }
+                          </Stack>
                     </Paper>
                     <Center >
                         <ActionIcon color="gray" size="xl" radius="xl" variant="filled" onClick={quitOnMe}>

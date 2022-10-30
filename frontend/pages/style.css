@@ -146,3 +146,8 @@
     transform: rotateX(0deg);
   }
 }
+
+/* GAme TExt */
+.game-text {
+  overflow-wrap: break-word;
+}
